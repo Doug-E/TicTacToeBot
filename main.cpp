@@ -7,36 +7,26 @@
 
 using namespace std;
 
-//vvvvvvvvvvvvv FOR TESTING. DELETE BEFORE FINAL DRAFT! vvvvvvvvvvvv
-
-void printMatrix();
-
-
-
-
-
-
-//^^^^^^^^^^^^^^ FOR TESTING. DELETE BEFORE FINAL DRAFT! ^^^^^^^^^^^^^
-
 //Proto
-void vectorInitilizer();
+void vectInit();
 void playingBoard();
+void printGame();
 
 //global
-vector <vector <string> > board;
+vector <vector <char> > board;
 int boardSize = 3; //logic may break if not equal to 3!
 
 int main()
 {
-        vectorInitilizer();    
+        vectInit();    
         string playerSpot, botSpot;
         cout<< "Bot plays first" <<endl;
-        printMatrix();
-
+        printGame();
+        
 
 }
 
-vectorInitilizer()
+void vectInit()
 {
         board.resize(boardSize);
         for (int x = 0; x < boardSize; x++)
@@ -44,29 +34,26 @@ vectorInitilizer()
                 board[x].resize(boardSize);
                 for (int y = 0; y < boardSize; y++)
                 {
-                        board[x][y] = 0;
+                        board[x][y] = ' ';
                 }
         }
-
-
-
 }
 
-
-
-//TEST CODE
-void printMatrix(vector <vector <char> > matrix)
+void printGame()
 {
-        for (int r = 0; r < board.size(); r++)
+        cout << " A    B    C" <<endl;
+        for (int x = 0; x < board.size(); x++)
         {
-                for (int c = 0; c < board[r].size(); c++)
+                for (int y = 0; y < board[x].size(); y++)
                 {
-                        cout<< board[r][c] << " ";
+                        cout<< " " << board[x][y];
+                        if (y < (board.size()-1)) cout << " ||";
+                        else cout<< "  " << x+1;
                 }
-                cout<< endl;
+                cout << endl;
+                if (x < (board.size() -1)) cout << "=============" <<endl;
         }
 }
-//TEST CODE
 
 
 
