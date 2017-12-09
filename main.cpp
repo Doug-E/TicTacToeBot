@@ -4,13 +4,15 @@
 #include <string>
 #include <vector>
 #include "fstream"
+#include "moveLogic.h"
 
 using namespace std;
 
 //Proto
 void vectInit();
-void playingBoard();
+void inGame();
 void printGame();
+void getPlayerMove();
 
 //global
 vector <vector <char> > board;
@@ -18,12 +20,16 @@ int boardSize = 3; //logic may break if not equal to 3!
 
 int main()
 {
-        vectInit();    
-        string playerSpot, botSpot;
-        cout<< "Bot plays first" <<endl;
-        printGame();
-        
-
+    string playAgain = 'y';
+    do
+    {
+        vectInit();
+        cout<< "Bot plays first" <<endl; 
+        inGame();
+        cout<< "Play again? (y/n)" <<endl;
+        cin >> playAgain;
+    }
+    while (playAgain == 'y' || playAgain == 'Y' || playAgain == 'yes' || playAgain == 'Yes || playAgain == 'YES');
 }
 
 void vectInit()
