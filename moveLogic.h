@@ -11,13 +11,13 @@ using namespace std;
 class moveLogic
 {
 
-    private:
-        int turn;
-
-    public:
-        string whoWon(vector < vector < char > > );
-        bool validMove(vector < vector < char > > ); 
-        string botMove(vector < vector < char > > );
+        private:
+                int turnNumber, firstRound;
+                bool s1,s2,s3,s4,s5,s6,s7,s8,s9;
+        public:
+                bool whoWon( vector < vector < char> >);
+                bool validMove(int); 
+                int botMove();
 };
 
 #endif
