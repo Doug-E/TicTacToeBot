@@ -16,7 +16,7 @@ class moveLogic
                 bool s1,s2,s3,s4,s5,s6,s7,s8,s9;
         public:
                 bool whoWon( vector < vector < char> >);
-                bool validMove(int); 
+                bool validMove(int, vector <vector <char > >); 
                 int botMove();
 };
 

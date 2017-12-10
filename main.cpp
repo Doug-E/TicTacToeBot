@@ -70,7 +70,7 @@ void inGame()
                         cout << "Your move";
                         cin >> rawInput;
                         spot = inputToSpot(rawInput);
-                        validSpot = mL.validMove(spot);
+                        validSpot = mL.validMove(spot,board);
                         if (validSpot == true) addMove (player, spot);
                         else 
                         {
@@ -84,7 +84,7 @@ void inGame()
                 {
                         player = 0;
                         spot = mL.botMove();
-                        validSpot = mL.validMove(spot);
+                        validSpot = mL.validMove(spot,board);
 
                         if (validSpot == true) addMove(player, spot);
                 }
