@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "fstream"
+#include <fstream>
 #include "moveLogic.h"
 
 using namespace std;
@@ -16,6 +16,7 @@ void printGame();
 void getPlayerMove();
 int inputToSpot(string);
 bool didWin(int);
+void toWinnerFile(int &);
 
 //global
 vector <vector <char> > board;
@@ -27,16 +28,10 @@ moveLogic mL;
 
 int main()
 {
-        string playAgain;
-        do
-        {
-                vectInit();
-                cout<< "Bot plays first" <<endl; 
-                inGame();
-                cout<< "Play again? (y/n)" <<endl;
-                cin >> playAgain;
-        }
-        while (playAgain == "y" || playAgain == "Y" || playAgain == "yes" || playAgain == "Yes" || playAgain == "YES");
+        vectInit();
+        cout<< "Bot plays first" <<endl; 
+        inGame();
+        cout<< "Thanks for playing!!" <<endl;
 }
 
 void vectInit()
@@ -122,23 +117,44 @@ void addMove(int player, int spot)
 bool didWin(int player) 
 {
         bool winner = mL.whoWon(board);
+        int score = 0;
         if (winner == 0) return 0;
         if (winner == 1 && player == 1)
         { 
                 cout << "Good Job! You won!!!" <<endl;
+                score = 1;
+                toWinnerFile(score);
                 return 1;
         }
         else if (winner == 1 && player == 0)
         {
                 cout << "You lost to the bot. Better luck next time!" <<endl;
+                score = 2;
+                toWinnerFile(score);
                 return 1;
         }
         else if (turn = maxTurn)
         {
                 cout << "Cats game! Better luck next time!" <<endl;
+                score = 3; 
+                toWinnerFile(score);
                 return 1;
         }
         else return 0;
+}
+
+void toWinnerFile(int &score)
+{
+        string current;
+        if (score == 1) current = "the player.";
+        else if (score == 2) current = "the bot.";
+        else if (score == 3) current = "no one.";
+
+        ofstream mkFile;
+        mkFile.open("ScoreFile.txt", ofstream::out | ofstream::trunc);
+        mkFile << "The previous game was won by " << current;
+        mkFile.close();
+
 }
 
 int inputToSpot(string playerInput)
